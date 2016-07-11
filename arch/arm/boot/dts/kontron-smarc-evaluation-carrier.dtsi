@@ -1,0 +1,119 @@
+/*
+ * The code contained herein is licensed under the GNU General Public
+ * License. You may obtain a copy of the GNU General Public License
+ * Version 2 or later at the following locations:
+ *
+ * http://www.opensource.org/licenses/gpl-license.html
+ * http://www.gnu.org/copyleft/gpl.html
+ */
+
+/ {
+        regulators {
+                compatible = "simple-bus";
+                #address-cells = <1>;
+                #size-cells = <0>;
+
+                /* PWM power.
+                   This is stub for now, including voltage values.
+                   Physically, LP8545 is used there. It could be described better */
+                carrier_pwm_reg: regulator@100 {
+                        compatible = "regulator-fixed";
+                        reg = <100>;
+                        regulator-name = "V_31V9_BKLT";
+                        regulator-min-microvolt = <12000000>;
+                        regulator-max-microvolt = <12000000>;
+                        regulator-boot-on;
+                        regulator-always-on;
+                };
+
+                /* MicroSD slot power */
+                carrier_sdio_reg: regulator@101 {
+                        compatible = "regulator-fixed";
+                        reg = <101>;
+                        regulator-name = "V_3V3_SDCARD";
+                        regulator-min-microvolt = <3300000>;
+                        regulator-max-microvolt = <3300000>;
+                        gpio = SMARC_SDIO_PWR_EN_GPIO;
+                        enable-active-high;
+                };
+
+                /* CAN0 enable line */
+                can0_en_reg: regulator@102 {
+                        compatible = "regulator-fixed";
+                        reg = <102>;
+                        regulator-name = "CAN0_EN";
+                        regulator-min-microvolt = <3300000>;
+                        regulator-max-microvolt = <3300000>;
+                        gpio = <&pm_gpio 6 0>;
+                        enable-active-high;
+                };
+
+                /* CAN1 enable line */
+                can1_en_reg: regulator@103 {
+                        compatible = "regulator-fixed";
+                        reg = <103>;
+                        regulator-name = "CAN1_EN";
+                        regulator-min-microvolt = <3300000>;
+                        regulator-max-microvolt = <3300000>;
+                        gpio = <&pm_gpio 7 0>;
+                        enable-active-high;
+                };
+        };
+};
+
+&smarc_ser0 {
+        status = "okay";
+};
+
+&smarc_ser1 {
+        status = "okay";
+};
+
+&smarc_ser2 {
+        status = "okay";
+};
+
+&smarc_ser3 {
+        status = "okay";
+};
+
+&smarc_pwm_backlight {
+        power-supply = <&carrier_pwm_reg>;
+};
+
+&smarc_sdio {
+        status = "okay";
+        vmmc-supply = <&carrier_sdio_reg>;
+        no-1-8-v;
+};
+
+&smarc_i2c_pm {
+        pm_eeprom: at24@50 {
+                compatible = "at24,24c32";
+                pagesize = <8>;
+                reg = <0x50>;
+        };
+        pm_gpio: tca9554@22 {
+                compatible = "nxp,pca9554";
+                reg = <0x22>;
+                gpio-controller;
+                #gpio-cells = <2>;
+        };
+};
+
+#ifdef SMX6_CPU_IMX6Q
+&smarc_sata {
+        status = "okay";
+};
+#endif
+
+&smarc_can0 {
+        xceiver-supply = <&can0_en_reg>;
+        status = "okay";
+};
+
+&smarc_can1 {
+        xceiver-supply = <&can1_en_reg>;
+        status = "okay";
+};
+
