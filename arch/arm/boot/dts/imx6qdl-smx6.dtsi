@@ -323,6 +323,8 @@
         bus-width = <4>;
         cd-gpios = <&gpio6 14 0>;
         wp-gpios = <&gpio1 26 0>;
+        no-1-8-v;
+	status = "okay";
 };
 #define SMARC_SDIO_PWR_EN_GPIO <&gpio1 29 0>
 
