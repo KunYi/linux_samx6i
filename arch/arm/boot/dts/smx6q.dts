@@ -11,5 +11,6 @@
 #define SMX6_PANEL_LCD
 
 /dts-v1/;
+#include <dt-bindings/gpio/gpio.h>
 #include "imx6qdl-smx6.dtsi"
 #include "kontron-smarc-evaluation-carrier.dtsi"
