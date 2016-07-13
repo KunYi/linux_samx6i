@@ -8,7 +8,7 @@
  */
 
 #define SMX6_CPU_IMX6Q
-#define SMX6_PANEL_LCD
+#define SMX6_PANEL_LVDS
 
 /dts-v1/;
 #include <dt-bindings/gpio/gpio.h>
