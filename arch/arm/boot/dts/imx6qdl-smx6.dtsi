@@ -409,14 +409,14 @@
 #define smarc_sata sata
 #endif
 
-#define smarc_can0 flexcan1
-&flexcan1 {
+#define smarc_can0 can1
+&can1 {
         pinctrl-names = "default";
         pinctrl-0 = <&pinctrl_smx6_flexcan1>;
 };
 
-#define smarc_can1 flexcan2
-&flexcan2 {
+#define smarc_can1 can2
+&can2 {
         pinctrl-names = "default";
         pinctrl-0 = <&pinctrl_smx6_flexcan2>;
 };
