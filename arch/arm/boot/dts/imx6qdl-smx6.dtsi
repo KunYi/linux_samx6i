@@ -347,8 +347,14 @@
         sec_ipu_id = <0>;
         sec_disp_id = <0>;
         ext_ref = <1>;
-
         status = "okay";
+	lvds-channel@0 {
+		crtc = "ipu1-di0";
+	};
+
+	lvds-channel@1 {
+		crtc = "ipu1-di1";
+	};
 };
 #endif
 
