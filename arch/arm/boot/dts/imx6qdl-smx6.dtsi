@@ -313,7 +313,7 @@
         pinctrl-names = "default";
         pinctrl-0 = <&pinctrl_smx6_usdhc2>;
         bus-width = <8>;
-        cd-gpios = <&gpio1 4 0>;        /* per schematics, always constant? */
+        cd-gpios = <&gpio1 4 GPIO_ACTIVE_LOW>;        /* per schematics, always constant? */
 };
 
 #define smarc_sdio usdhc3
@@ -321,12 +321,12 @@
         pinctrl-names = "default";
         pinctrl-0 = <&pinctrl_smx6_usdhc3>;
         bus-width = <4>;
-        cd-gpios = <&gpio6 14 0>;
-        wp-gpios = <&gpio1 26 0>;
+        cd-gpios = <&gpio6 14 GPIO_ACTIVE_LOW>;
+        wp-gpios = <&gpio1 26 GPIO_ACTIVE_HIGH>;
         no-1-8-v;
 	status = "okay";
 };
-#define SMARC_SDIO_PWR_EN_GPIO <&gpio1 29 0>
+#define SMARC_SDIO_PWR_EN_GPIO <&gpio1 29 GPIO_ACTIVE_HIGH>
 
 #ifndef SMX6_HIDE_EMMC
 &usdhc4 {
