@@ -13,9 +13,11 @@
                 #address-cells = <1>;
                 #size-cells = <0>;
 
-                /* PWM power.
-                   This is stub for now, including voltage values.
-                   Physically, LP8545 is used there. It could be described better */
+                /*
+				 * PWM power.
+				 * This is stub for now, including voltage values.
+                 * Physically, LP8545 is used there. It could be described better
+				 */
                 carrier_pwm_reg: regulator@100 {
                         compatible = "regulator-fixed";
                         reg = <100>;
@@ -79,6 +81,7 @@
 
 &smarc_pwm_backlight {
         power-supply = <&carrier_pwm_reg>;
+		status = "okay";
 };
 
 &smarc_sdio {
@@ -124,6 +127,7 @@
 		fsl,data-mapping = "spwg";
 		fsl,data-width = <24>;
 		status = "okay";
+		primary;
 
 		display-timings {
 			native-mode = <&timing0>;
@@ -144,10 +148,6 @@
 	lvds-channel@1 {
 		fsl,data-mapping = "spwg";
 		fsl,data-width  = <24>;
-		status = "okay";
-		primary;
-
-		status = "okay";
 
 		display-timings {
 			native-mode = <&timing1>;
