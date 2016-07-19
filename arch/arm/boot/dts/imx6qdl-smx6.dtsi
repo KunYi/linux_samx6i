@@ -1004,5 +1004,13 @@
                         >;
                 };
         };
-};
 
+		spdif {
+				pinctrl_smx6_spdif: spdifgrp-smx6 {
+						fsl,pins = <
+								MX6QDL_PAD_ENET_RX_ER__SPDIF_IN 0x1b030
+								MX6QDL_PAD_ENET_RXD0__SPDIF_OUT 0x1b0b0
+						>;
+				};
+		};
+};
