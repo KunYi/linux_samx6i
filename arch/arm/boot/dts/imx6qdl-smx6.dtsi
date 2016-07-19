@@ -49,12 +49,27 @@
                 spi1 = &ecspi2;
         };
 
+		sound-wm8903 {
+				compatible = "uti,imx6-smx6-wm8903",
+							 "uti,imx-audio-wm8903";
+				model = "imx-wm8903";
+		};
+
         sound-hdmi {
                 compatible = "fsl,imx6q-audio-hdmi",
                              "fsl,imx-audio-hdmi";
                 model = "imx-audio-hdmi";
                 hdmi-controller = <&hdmi_audio>;
         };
+
+		sound-spdif {
+				compatible = "fsl,imx-audio-spdif",
+							 "fsl,imx-smx6-spdif";
+				model = "imx-spdif";
+				spdif-controller = <&spdif>;
+				spdif-out;
+				spdof-in;
+		};
 
         mxcfb1: fb@0 {
                 compatible = "fsl,mxc_sdc_fb";
@@ -348,6 +363,7 @@
         sec_disp_id = <0>;
         ext_ref = <1>;
         status = "okay";
+
 	lvds-channel@0 {
 		crtc = "ipu1-di0";
 	};
